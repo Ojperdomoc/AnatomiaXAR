@@ -179,7 +179,7 @@ export default function Scanner({ onBack }: Props) {
             </button>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display text-sm font-700 tracking-widest">ANATOMIA<span className="text-cyan-300">XR</span></span>
+                <span className="font-display text-sm font-bold tracking-widest">ANATOMIA<span className="text-cyan-300">XR</span></span>
                 <span className="rounded-full border border-lime-300/30 bg-lime-300/10 px-2 py-0.5 font-mono2 text-[10px] text-lime-200">HIGGSFIELD</span>
               </div>
               <p className="font-mono2 text-[11px] text-white/50">Escáner musculoesquelético en vivo</p>

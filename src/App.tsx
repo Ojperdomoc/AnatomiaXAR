@@ -3,6 +3,11 @@ import { ScanLine, Bone, Beef, Cable, Spline, Camera, Sparkles, ShieldCheck, Zap
 import Scanner from './components/Scanner';
 import { LAYERS } from './data/anatomy';
 
+// Respeta el `base` de Vite: funciona en dev (/), en GitHub Pages (/AnatomiaXAR/)
+// y en dominios personalizados sin cambiar código.
+const BASE = import.meta.env.BASE_URL;
+const img = (file: string) => `${BASE}images/${file}`;
+
 export default function App() {
   const [screen, setScreen] = useState<'home' | 'scanner'>('home');
   const [preview, setPreview] = useState<string>('musculos');
@@ -39,7 +44,7 @@ export default function App() {
       {/* HERO */}
       <header className="relative overflow-hidden pt-20">
         <div className="absolute inset-0">
-          <img src="/images/hero-anatomy.jpg" alt="Anatomía holográfica" className="h-full w-full object-cover opacity-70" />
+          <img src={img("hero-anatomy.jpg")} alt="Anatomía holográfica" className="h-full w-full object-cover opacity-70" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#05070e]/60 via-[#05070e]/35 to-[#05070e]" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#05070e]/85 via-transparent to-[#05070e]/60" />
           <div className="scanner-grid absolute inset-0 opacity-40" />
@@ -113,7 +118,7 @@ export default function App() {
                 ))}
               </div>
               <div className="mt-3 overflow-hidden rounded-2xl border border-white/10">
-                <img src={preview === 'musculos' ? '/images/muscle-detail.jpg' : preview === 'huesos' ? '/images/bone-detail.jpg' : '/images/hero-anatomy.jpg'} alt="" className="h-56 w-full object-cover transition-all duration-500" key={preview} />
+                <img src={preview === 'musculos' ? img("muscle-detail.jpg") : preview === 'huesos' ? img("bone-detail.jpg") : img("hero-anatomy.jpg")} alt="" className="h-56 w-full object-cover transition-all duration-500" key={preview} />
                 <div className="bg-black/70 p-3 backdrop-blur">
                   <div className="text-sm font-bold">{LAYERS.find(l => l.id === preview)?.nombre} — {LAYERS.find(l => l.id === preview)?.tagline}</div>
                   <div className="mt-1 line-clamp-2 text-xs text-white/60">{LAYERS.find(l => l.id === preview)?.desc}</div>
@@ -211,9 +216,9 @@ export default function App() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <img src="/images/hero-anatomy.jpg" className="h-64 w-full rounded-3xl border border-white/10 object-cover" alt="Hero Higgsfield" />
-            <img src="/images/muscle-detail.jpg" className="mt-8 h-64 w-full rounded-3xl border border-white/10 object-cover" alt="Músculo" />
-            <img src="/images/bone-detail.jpg" className="h-56 w-full rounded-3xl border border-white/10 object-cover" alt="Hueso" />
+            <img src={img("hero-anatomy.jpg")} className="h-64 w-full rounded-3xl border border-white/10 object-cover" alt="Hero Higgsfield" />
+            <img src={img("muscle-detail.jpg")} className="mt-8 h-64 w-full rounded-3xl border border-white/10 object-cover" alt="Músculo" />
+            <img src={img("bone-detail.jpg")} className="h-56 w-full rounded-3xl border border-white/10 object-cover" alt="Hueso" />
             <div className="mt-8 flex h-56 flex-col justify-between rounded-3xl border border-cyan-300/25 bg-gradient-to-br from-cyan-400/15 to-fuchsia-500/10 p-5">
               <HeartPulse className="h-8 w-8 text-cyan-200" />
               <div><div className="font-display text-3xl font-black">98.2%</div><div className="font-mono2 text-[11px] text-white/55">precisión de alineación simulada + tracking estable</div></div>
@@ -251,7 +256,7 @@ export default function App() {
 
           {/* CTA final */}
           <div className="relative mt-12 overflow-hidden rounded-[32px] border border-white/10">
-            <img src="/images/hero-anatomy.jpg" className="absolute inset-0 h-full w-full object-cover" alt="" />
+            <img src={img("hero-anatomy.jpg")} className="absolute inset-0 h-full w-full object-cover" alt="" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
             <div className="relative p-8 sm:p-12">
               <div className="font-mono2 text-xs tracking-[0.3em] text-cyan-300">¿LISTO PARA VERTE POR DENTRO?</div>
